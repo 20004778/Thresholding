@@ -7,88 +7,86 @@ To segment the image using global thresholding, adaptive thresholding and Otsu's
 2. OpenCV
 
 ## Algorithm
+### Step 1:
+Load the necessary packages.
 
-### Step1:
-<br>
+### Step 2:
+Read the Image and convert to grayscale.
 
-### Step2:
-<br>
+### Step 3:
+Use Global thresholding to segment the image.
 
-### Step3:
-<br>
+### Step 4:
+Use Adaptive thresholding to segment the image.
 
-### Step4:
-<br>
+### Step 5:
+Use Otsu's method to segment the image.
 
-### Step5:
-<br>
+### Step 6:
+Display the results.
 
 ## Program
 
 ```python
 # Load the necessary packages
-
-
-
-
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
 
 # Read the Image and convert to grayscale
-
-
-
+image=cv2.imread("ir.jpg",1)
+image=cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
+image_gray=cv2.imread("ir.jpg",0)
 
 # Use Global thresholding to segment the image
-
-
-
+ret,thresh_img1=cv2.threshold(image_gray,86,255,cv2.THRESH_BINARY)
+ret,thresh_img2=cv2.threshold(image_gray,86,255,cv2.THRESH_BINARY_INV)
+ret,thresh_img3=cv2.threshold(image_gray,86,255,cv2.THRESH_TOZERO)
+ret,thresh_img4=cv2.threshold(image_gray,86,255,cv2.THRESH_TOZERO_INV)
+ret,thresh_img5=cv2.threshold(image_gray,100,255,cv2.THRESH_TRUNC)
 
 # Use Adaptive thresholding to segment the image
-
-
-
+thresh_img7=cv2.adaptive Threshold(image_gray,255,cv2.ADAPTIVE_THRESH_MEAN_C,cv2.THRESH_BINARY,11,2)
+thresh_img8=cv2.adaptive Threshold(image_gray,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY,11,2)
 
 # Use Otsu's method to segment the image 
-
-
-
+ret,thresh_img6=cv2.threshold(image_gray,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
 
 # Display the results
-
-
-
-
-
+titles=["Gray Image","Threshold Image (Binary)","Threshold Image (Binary Inverse)","Threshold Image (To Zero)"
+       ,"Threshold Image (To Zero-Inverse)","Threshold Image (Truncate)","Otsu","Adaptive Threshold (Mean)","Adaptive Threshold (Gaussian)"]
+images=[image_gray,thresh_img1,thresh_img2,thresh_img3,thresh_img4,thresh_img5,thresh_img6,thresh_img7,thresh_img8]
+for i in range(0,9):
+    plt.figure(figsize=(10,10))
+    plt.subplot(1,2,1)
+    plt.title("Original Image")
+    plt.imshow(image)
+    plt.axis("off")
+    plt.subplot(1,2,2)
+    plt.title(titles[i])
+    plt.imshow(cv2.cvtColor(images[i],cv2.COLOR_BGR2RGB))
+    plt.axis("off")
+    plt.show()
 ```
 ## Output
 
 ### Original Image
-![image](https://user-images.githubusercontent.com/75236145/169496711-b38fd997-7605-4f81-9db4-748b6ad33ffb.png)
+![image](https://user-images.githubusercontent.com/75236145/169645362-458d07ed-94c2-434f-9d48-113cb8cc89ac.png)
+
 
 
 ### Global Thresholding
-![image](https://user-images.githubusercontent.com/75236145/169496837-433e9818-f3ac-4e72-90e5-ac0887989d5c.png)
-![image](https://user-images.githubusercontent.com/75236145/169497218-62cfde9d-6da6-450f-a4ca-fd27dd7d2880.png)
-![image](https://user-images.githubusercontent.com/75236145/169497412-4824d18b-5c3d-4e19-b8b9-96aac3efea81.png)
-![image](https://user-images.githubusercontent.com/75236145/169497462-00b97836-0edd-466d-ba60-c136d6dda059.png)
-![image](https://user-images.githubusercontent.com/75236145/169497531-99ed20ec-4e11-4e57-b581-1ca0844c84aa.png)
-![image](https://user-images.githubusercontent.com/75236145/169497594-7dfefb0b-12e4-4d04-be19-14bba1f3834c.png)
-![image](https://user-images.githubusercontent.com/75236145/169497658-4b4f28f8-b80f-45ff-9291-2ce3bcd1f0c3.png)
-![image](https://user-images.githubusercontent.com/75236145/169497719-0dafcea0-f944-4299-83a5-ac76f99f68d0.png)
-
+![image](https://user-images.githubusercontent.com/75236145/169645457-edd39235-ee01-4c68-8bd7-867260acf6ac.png)
+![image](https://user-images.githubusercontent.com/75236145/169645484-6d4e7ce7-60f0-4789-891f-49d2e9c818f1.png)
+![image](https://user-images.githubusercontent.com/75236145/169645499-605b7341-57ca-47dd-b805-aadaa5cb9437.png)
 
 ### Adaptive Thresholding
-<br>
-<br>
-<br>
-<br>
-<br>
+![image](https://user-images.githubusercontent.com/75236145/169645403-9a190360-ac57-4c85-a2a3-66fd61a84452.png)
+
 
 ### Optimum Global Thesholding using Otsu's Method
-<br>
-<br>
-<br>
-<br>
-<br>
+![image](https://user-images.githubusercontent.com/75236145/169645425-43f53f5f-0fad-4668-b8c7-153b8330d4b8.png)
+
 
 
 ## Result
